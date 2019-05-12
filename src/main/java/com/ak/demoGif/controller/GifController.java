@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,6 +34,15 @@ public class GifController {
 	@ResponseBody
 	public String getGifNamesString(){
 		return gifRepository.getAllGifs().toString();
+	}
+
+	@RequestMapping("/")
+	public String listGifs(ModelMap modelMap) {
+		List<Gif> gifList = gifRepository.getAllGifs();
+		//przekazanie gif do view
+		modelMap.put("gifs", gifList);
+		//zwracanie widoku
+		return "home";
 	}
 
 
