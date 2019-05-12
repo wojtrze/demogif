@@ -30,4 +30,12 @@ public class GifRepository {
 		}
 		return namesList;
 	}
+
+	public static List<Gif> getFavoriteGifs() {
+		List<Gif> favoriteGifs = new ArrayList<>();
+		for (Gif gif : ALL_GIFS) {
+			if (gif.isFavorite()) favoriteGifs.add(gif);
+		}
+		return favoriteGifs;
+	}
 }
